@@ -1,4 +1,15 @@
 const express = require("express");
-const app = require("express-app");
+const app = express();
+const rutasHome = require("./routes/main");
+const path = require("path");
+const publicPath = path.resolve(__dirname, "./public");
 
-app.listen(3000, () => console.log("servidor funcionando"));
+app.use(express.static(publicPath));
+
+app.use("/", rutasHome);
+
+app.listen(3000, () => {
+  console.log("Servidor funcionando");
+});
+
+console.log(path.resolve(__dirname, "./public"));
